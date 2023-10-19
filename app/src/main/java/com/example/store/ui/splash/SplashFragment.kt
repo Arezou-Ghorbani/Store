@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.example.store.R
+import com.example.store.data.stored.SessionManager
 import com.example.store.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.store.data.stored.SessionManager
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
