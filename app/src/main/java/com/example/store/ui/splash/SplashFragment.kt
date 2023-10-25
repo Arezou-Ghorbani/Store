@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.store.BuildConfig
+import com.example.store.R
 import com.example.store.data.stored.SessionManager
 import com.example.store.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +43,7 @@ class SplashFragment : Fragment() {
         //Init views
         binding.apply {
 //            Version
-//            versionTxt.text = "${getString(R.string.version)} : ${BuildConfig.VERSION_NAME}"
+            versionTxt.text = "${getString(R.string.version)} : ${BuildConfig.VERSION_NAME}"
         }
         checkSession()
     }
