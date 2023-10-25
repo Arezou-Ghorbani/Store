@@ -7,7 +7,6 @@ import retrofit2.Response
 
 /**Created by Arezou-Ghorbani on 25,October,2023,ArezouGhorbaniii@gmail.com**/
 open class NetworkResponse<T>(private val response: Response<T>) {
-
     open fun generateResponse(): NetworkRequest<T> {
         return when {
             response.code() == 401 -> NetworkRequest.Error("You are not authorized")
@@ -23,11 +22,10 @@ open class NetworkResponse<T>(private val response: Response<T>) {
                 }
                 NetworkRequest.Error(errorMessage)
             }
-
             response.code() == 500 -> NetworkRequest.Error("Try again")
             response.isSuccessful -> NetworkRequest.Success(response.body()!!)
             else -> NetworkRequest.Error(response.message())
         }
     }
-
+317 -16
 }
