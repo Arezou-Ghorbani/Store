@@ -27,5 +27,4 @@ open class NetworkResponse<T>(private val response: Response<T>) {
             else -> NetworkRequest.Error(response.message())
         }
     }
-317 -16
-}
+ }
