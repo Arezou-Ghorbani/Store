@@ -1,0 +1,16 @@
+package com.example.store.utils.extensions
+
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import com.google.android.material.snackbar.Snackbar
+
+/**Created by Arezou-Ghorbani on 26,October,2023,ArezouGhorbaniii@gmail.com**/
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
+}
+fun View.showSnackBar(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+}
