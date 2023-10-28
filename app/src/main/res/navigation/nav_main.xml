@@ -10,4 +10,27 @@
         android:name="com.example.store.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/loginPhoneFragment"
+        android:name="com.example.store.ui.login.LoginPhoneFragment"
+        android:label="LoginPhoneFragment"
+        tools:layout="@layout/fragment_login_phone">
+        <action
+            android:id="@+id/actionPhoneToVerify"
+            app:destination="@id/loginVerifyFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginVerifyFragment"
+        android:name="com.example.store.ui.login.LoginVerifyFragment"
+        android:label="LoginVerifyFragment"
+        tools:layout="@layout/fragment_login_verify">
+        <argument
+            android:name="phone"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -19,3 +19,6 @@ const val BEARER = "Bearer"
 const val ACCEPT = "accept"
 const val CONTENT_TYPE = "content_type"
 const val APPLICATION_JSON = "application/json"
+//Editable
+var IS_CALLED_VERIFY = false
+var PRODUCT_ID = 0
