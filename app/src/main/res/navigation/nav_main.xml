@@ -10,27 +10,161 @@
         android:name="com.example.store.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
-    <fragment
-        android:id="@+id/loginPhoneFragment"
-        android:name="com.example.store.ui.login.LoginPhoneFragment"
-        android:label="LoginPhoneFragment"
-        tools:layout="@layout/fragment_login_phone">
-        <action
-            android:id="@+id/actionPhoneToVerify"
-            app:destination="@id/loginVerifyFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginVerifyFragment"
-        android:name="com.example.store.ui.login.LoginVerifyFragment"
-        android:label="LoginVerifyFragment"
-        tools:layout="@layout/fragment_login_verify">
-        <argument
-            android:name="phone"
-            android:defaultValue=""
-            app:argType="string" />
-    </fragment>
+    <!--Splash action-->
+    <action
+        android:id="@+id/actionSplashToLogin"
+        app:destination="@id/navLogin"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    <!--Login nav-->
+    <navigation
+        android:id="@+id/navLogin"
+        app:startDestination="@id/loginPhoneFragment">
+        <fragment
+            android:id="@+id/loginPhoneFragment"
+            android:name="com.example.store.ui.login.LoginPhoneFragment"
+            android:label="LoginPhoneFragment"
+            tools:layout="@layout/fragment_login_phone">
+            <action
+                android:id="@+id/actionPhoneToVerify"
+                app:destination="@id/loginVerifyFragment"
+                app:enterAnim="@anim/from_left"
+                app:exitAnim="@anim/to_right"
+                app:popEnterAnim="@anim/from_right"
+                app:popExitAnim="@anim/to_left" />
+        </fragment>
+        <fragment
+            android:id="@+id/loginVerifyFragment"
+            android:name="com.example.store.ui.login.LoginVerifyFragment"
+            android:label="LoginVerifyFragment"
+            tools:layout="@layout/fragment_login_verify">
+            <argument
+                android:name="phone"
+                android:defaultValue=""
+                app:argType="string" />
+        </fragment>
+    </navigation>
+    <!--Main action-->
+<!--    <action-->
+<!--        android:id="@+id/actionToMain"-->
+<!--        app:destination="@id/navMain"-->
+<!--        app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--        app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--        app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--        app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+    <!--Main Nav-->
+<!--    <navigation-->
+<!--        android:id="@+id/navMain"-->
+<!--        app:startDestination="@id/homeFragment">-->
+<!--        <fragment-->
+<!--            android:id="@+id/cartFragment"-->
+<!--            android:name="com.example.store.ui.cart.CartFragment"-->
+<!--            android:label="fragment_cart"-->
+<!--            tools:layout="@layout/fragment_cart" />-->
+<!--        <fragment-->
+<!--            android:id="@+id/categoriesFragment"-->
+<!--            android:name="com.example.store.ui.categories.CategoriesFragment"-->
+<!--            android:label="fragment_categories"-->
+<!--            tools:layout="@layout/fragment_categories">-->
+<!--            <action-->
+<!--                android:id="@+id/actionToCategoriesProduct"-->
+<!--                app:destination="@id/navCategory"-->
+<!--                app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--                app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--                app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--                app:popExitAnim="@anim/nav_default_pop_exit_anim">-->
+<!--                <argument-->
+<!--                    android:name="slug"-->
+<!--                    app:argType="string" />-->
+<!--            </action>-->
+<!--        </fragment>-->
+<!--        &lt;!&ndash;Profile action&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionHomeToProfile"-->
+<!--            app:destination="@id/profileFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        <fragment-->
+<!--            android:id="@+id/profileFragment"-->
+<!--            android:name="academy.nouri.storeapp.ui.profile.ProfileFragment"-->
+<!--            android:label="fragment_profile"-->
+<!--            tools:layout="@layout/fragment_profile" />-->
+<!--        &lt;!&ndash;Edit profile&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToEditProfile"-->
+<!--            app:destination="@id/editProfileFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Increase wallet&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToIncreaseWallet"-->
+<!--            app:destination="@id/increaseWalletFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Profile comments&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToProfileComments"-->
+<!--            app:destination="@id/profileCommentsFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Profile favorites&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToProfileFavorites"-->
+<!--            app:destination="@id/profileFavoriteFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Profile address&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToProfileAddresses"-->
+<!--            app:destination="@id/profileAddressFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Profile orders&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToProfileOrders"-->
+<!--            app:destination="@id/profileOrdersFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        &lt;!&ndash;Detail&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/actionToDetail"-->
+<!--            app:destination="@id/detailFragment"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+<!--        <action-->
+<!--            android:id="@+id/actionToCategories"-->
+<!--            app:destination="@id/navCategory"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim">-->
+<!--            <argument-->
+<!--                android:name="slug"-->
+<!--                app:argType="string" />-->
+<!--        </action>-->
+<!--        <fragment-->
+<!--            android:id="@+id/homeFragment"-->
+<!--            android:name="academy.nouri.storeapp.ui.home.HomeFragment"-->
+<!--            android:label="fragment_home"-->
+<!--            tools:layout="@layout/fragment_home" />-->
+<!--    </navigation>-->
+
 </navigation>

@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 /**Created by Arezou-Ghorbani on 28,October,2023,ArezouGhorbaniii@gmail.com**/
+
 @Suppress("DEPRECATION")
 class NetworkChecker @Inject constructor(private val manager: ConnectivityManager, private val request: NetworkRequest) :
     ConnectivityManager.NetworkCallback() {
