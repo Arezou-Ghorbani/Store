@@ -1,4 +1,4 @@
-package com.example.store.ui.home
+package com.example.store.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,12 +17,12 @@ class BannerAdapter @Inject constructor() : RecyclerView.Adapter<BannerAdapter.V
 
     private var items = emptyList<ResponseBanners.ResponseBannersItem>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemBannersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BannerAdapter.ViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
 
     override fun getItemCount() = items.size
 
