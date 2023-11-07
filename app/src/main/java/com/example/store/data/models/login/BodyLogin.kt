@@ -1,8 +1,8 @@
 package com.example.store.data.models.login
 
 import com.google.gson.annotations.SerializedName
+import javax.inject.Inject
 
-/**Created by Arezou-Ghorbani on 21,October,2023,ArezouGhorbaniii@gmail.com**/
 data class BodyLogin(
     @SerializedName("login")
     var login: String? = null, // 09120174757
