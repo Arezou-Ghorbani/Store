@@ -2,7 +2,6 @@ package com.example.store.data.models.home
 
 import com.google.gson.annotations.SerializedName
 
-/**Created by Arezou-Ghorbani on 05,November,2023,ArezouGhorbaniii@gmail**/
 class ResponseDiscount : ArrayList<ResponseDiscount.ResponseDiscountItem>(){
     data class ResponseDiscountItem(
         @SerializedName("discount_rate")

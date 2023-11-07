@@ -1,9 +1,9 @@
 package com.example.store.data.models.home
 
+
 import com.example.store.data.models.search.ResponseSearch
 import com.google.gson.annotations.SerializedName
 
-/**Created by Arezou-Ghorbani on 05,November,2023,ResponseProducts**/
 data class ResponseProducts(
     @SerializedName("subCategory")
     val subCategory: SubCategory?

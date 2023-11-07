@@ -2,7 +2,6 @@ package com.example.store.data.models.home
 
 import com.google.gson.annotations.SerializedName
 
-/**Created by Arezou-Ghorbani on 05,November,2023,ArezouGhorbaniii@gmail**/
 class ResponseBanners : ArrayList<ResponseBanners.ResponseBannersItem>(){
     data class ResponseBannersItem(
         @SerializedName("image")
