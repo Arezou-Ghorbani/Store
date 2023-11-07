@@ -1,8 +1,8 @@
 package com.example.store.data.models.search
 
+
 import com.google.gson.annotations.SerializedName
 
-/**Created by Arezou-Ghorbani on 05,November,2023,ArezouGhorbaniii@gmail**/
 data class ResponseSearch(
     @SerializedName("products")
     val products: Products?
