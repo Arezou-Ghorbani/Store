@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.store.BuildConfig
 import com.example.store.R
 import com.example.store.data.stored.SessionManager
@@ -70,11 +71,11 @@ class SplashFragment : Fragment() {
                 lifecycleScope.launch {
                     val token = sessionManager.getToken.first()
                     Log.e("userToken", token.toString())
-//                    findNavController().popBackStack(R.id.splashFragment, true)
+                    findNavController().popBackStack(R.id.splashFragment, true)
                     if (token == null) {
-//                        findNavController().navigate(R.id.actionSplashToLogin)
+                        findNavController().navigate(R.id.actionSplashToLogin)
                     } else {
-//                        findNavController().navigate(R.id.actionToMain)
+                        findNavController().navigate(R.id.actionToMain)
                     }
                 }
             }

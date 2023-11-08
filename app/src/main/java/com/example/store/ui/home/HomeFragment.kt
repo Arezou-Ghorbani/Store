@@ -6,13 +6,38 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import coil.load
+import com.example.store.R
+import com.example.store.data.models.home.ResponseBanners
+import com.example.store.data.models.home.ResponseDiscount
+import com.example.store.data.models.home.ResponseProducts
+import com.example.store.databinding.DialogCheckVpnBinding
 import com.example.store.databinding.FragmentHomeBinding
+import com.example.store.ui.categories.CategoriesFragmentDirections
+import com.example.store.ui.home.adapter.BannerAdapter
+import com.example.store.ui.home.adapter.DiscountAdapter
+import com.example.store.ui.home.adapter.ProductsAdapter
+import com.example.store.utils.PRODUCT
+import com.example.store.utils.ProductsCategories
 import com.example.store.utils.base.BaseFragment
+import com.example.store.utils.extensions.isVisible
+import com.example.store.utils.extensions.loadImage
+import com.example.store.utils.extensions.setupRecyclerview
+import com.example.store.utils.extensions.showSnackBar
+import com.example.store.utils.extensions.transparentCorners
+import com.example.store.utils.network.NetworkRequest
+import com.example.store.viewModel.HomeViewModel
+import com.example.store.viewModel.ProfileViewModel
 import com.todkars.shimmer.ShimmerRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -141,7 +166,7 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun initBannerRecycler(data: List<ResponseBannersItem>) {
+    private fun initBannerRecycler(data: List<ResponseBanners.ResponseBannersItem>) {
         bannerAdapter.setData(data)
         binding.bannerList.apply {
             adapter = bannerAdapter
@@ -200,7 +225,7 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun initDiscountRecycler(data: List<ResponseDiscountItem>) {
+    private fun initDiscountRecycler(data: List<ResponseDiscount.ResponseDiscountItem>) {
         discountAdapter.setData(data)
         binding.discountList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true), discountAdapter
@@ -311,7 +336,7 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun initProductsRecyclers(data: List<Data>, recyclerView: ShimmerRecyclerView, adapter: ProductsAdapter) {
+    private fun initProductsRecyclers(data: List<ResponseProducts.SubCategory.Products.Data>, recyclerView: ShimmerRecyclerView, adapter: ProductsAdapter) {
         adapter.setData(data)
         recyclerView.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true),

@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
-import com.example.store.data.models.search.ResponseSearch
+import com.example.store.data.models.home.ResponseProducts
 import com.example.store.databinding.ItemProductsBinding
 import com.example.store.utils.BASE_URL_IMAGE
 import com.example.store.utils.base.BaseDiffUtils
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class ProductsAdapter @Inject constructor(@ApplicationContext private val context: Context) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
-    private var items = emptyList<ResponseSearch.Products.Data>()
+    private var items = emptyList<ResponseProducts.SubCategory.Products.Data>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.ViewHolder {
         val binding = ItemProductsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -37,7 +37,7 @@ class ProductsAdapter @Inject constructor(@ApplicationContext private val contex
     override fun getItemId(position: Int) = position.toLong()
 
     inner class ViewHolder(private val binding: ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ResponseSearch.Products.Data) {
+        fun bind(item: ResponseProducts.SubCategory.Products.Data) {
             binding.apply {
                 itemTitle.text = item.title
                 //Image
@@ -82,7 +82,7 @@ class ProductsAdapter @Inject constructor(@ApplicationContext private val contex
         onItemClickListener = listener
     }
 
-    fun setData(data: List<ResponseSearch.Products.Data>) {
+    fun setData(data: List<ResponseProducts.SubCategory.Products.Data>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items = data
