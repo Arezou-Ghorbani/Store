@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.store.data.models.home.ResponseBanners
+import com.example.store.data.models.home.ResponseBanners.ResponseBannersItem
 import com.example.store.databinding.ItemBannersBinding
 import com.example.store.utils.BASE_URL_IMAGE_WITH_STORAGE
 import com.example.store.utils.PRODUCT
@@ -15,7 +16,7 @@ import javax.inject.Inject
 /**Created by Arezou-Ghorbani on 04,November,2023,ArezouGhorbaniii@gmail**/
 class BannerAdapter @Inject constructor() : RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
 
-    private var items = emptyList<ResponseBanners.ResponseBannersItem>()
+    private var items = emptyList<ResponseBannersItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemBannersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,7 +32,7 @@ class BannerAdapter @Inject constructor() : RecyclerView.Adapter<BannerAdapter.V
     override fun getItemId(position: Int) = position.toLong()
 
     inner class ViewHolder(private val binding: ItemBannersBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ResponseBanners.ResponseBannersItem) {
+        fun bind(item: ResponseBannersItem) {
             binding.apply {
                 itemTitle.text = item.title
                 //Image
@@ -58,7 +59,7 @@ class BannerAdapter @Inject constructor() : RecyclerView.Adapter<BannerAdapter.V
         onItemClickListener = listener
     }
 
-    fun setData(data: List<ResponseBanners.ResponseBannersItem>) {
+    fun setData(data: List<ResponseBannersItem>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items = data
