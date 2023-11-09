@@ -1,0 +1,15 @@
+package com.example.store.data.repository
+
+import com.example.store.data.models.comments.BodySendComment
+import com.example.store.data.network.ApiServices
+import javax.inject.Inject
+
+/**Created by Arezou-Ghorbani on 09,November,2023,ArezouGhorbaniii@gmail.com**/
+class DetailRepository @Inject constructor(private val api: ApiServices) {
+    suspend fun getDetailProduct(id: Int) = api.getDetailProduct(id)
+    suspend fun postLikeProduct(id: Int) = api.postLikeProduct(id)
+    suspend fun getDetailFeatures(id: Int) = api.getDetailFeatures(id)
+    suspend fun getDetailComments(id: Int) = api.getDetailComments(id)
+    suspend fun postAddNewComment(id: Int, body: BodySendComment) = api.postAddNewComment(id, body)
+    suspend fun getDetailPriceChart(id: Int) = api.getDetailPriceChart(id)
+}
