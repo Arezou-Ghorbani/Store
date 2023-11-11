@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.contentValuesOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**Created by Arezou-Ghorbani on 28,October,2023,ArezouGhorbaniii@gmail.com**/
+/**Created by Arezou-Ghorbani on 09,November,2023,ArezouGhorbaniii@gmail.com**/
 @AndroidEntryPoint
 class LoginVerifyFragment : BaseFragment() {
     //Binding
@@ -168,6 +169,7 @@ class LoginVerifyFragment : BaseFragment() {
                             findNavController().popBackStack(R.id.loginVerifyFragment, true)
                             findNavController().popBackStack(R.id.loginPhoneFragment, true)
                             //Home
+                            findNavController().navigate(R.id.actionToMain)
                         }
                     }
 
