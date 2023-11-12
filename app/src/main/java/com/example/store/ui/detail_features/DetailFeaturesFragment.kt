@@ -1,4 +1,4 @@
-package com.example.store.ui.detail_comments
+package com.example.store.ui.detail_features
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.store.R
-import com.example.store.data.models.comments.ResponseCommentsList
-import com.example.store.databinding.FragmentDetailCommentsBinding
+import com.example.store.data.models.detail.ResponseProductFeatures
+import com.example.store.databinding.FragmentDetailFeaturesBinding
 import com.example.store.utils.base.BaseFragment
 import com.example.store.utils.extensions.isVisible
 import com.example.store.utils.extensions.setupRecyclerview
@@ -19,24 +17,21 @@ import com.example.store.utils.network.NetworkRequest
 import com.example.store.viewModel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
-/**Created by Arezou-Ghorbani on 05,November,2023,ArezouGhorbaniii@gmail**/
+/**Created by Arezou-Ghorbani on 09,November,2023,ArezouGhorbaniii@gmail.com**/
 @AndroidEntryPoint
-class DetailCommentsFragment : BaseFragment() {
+class DetailFeaturesFragment : BaseFragment() {
     //Binding
-
-    private var _binding: FragmentDetailCommentsBinding? = null
+    private var _binding: FragmentDetailFeaturesBinding? = null
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var commentsAdapter: CommentsAdapter
+    lateinit var featuresAdapter: FeaturesAdapter
 
     //Other
     private val viewModel by activityViewModels<DetailViewModel>()
-    private var productId = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentDetailCommentsBinding.inflate(layoutInflater)
+        _binding = FragmentDetailFeaturesBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -44,31 +39,26 @@ class DetailCommentsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         //Get id
         viewModel.productID.observe(viewLifecycleOwner) {
-            productId = it
             if (isNetworkAvailable)
-                viewModel.callProductComments(it)
-        }
-        //Add new comment
-        binding.addNewCommentTxt.setOnClickListener {
-            findNavController().navigate(R.id.actionDetailToAddComment)
+                viewModel.callProductFeatures(it)
         }
         //Load data
-        loadCommentsData()
+        loadFeaturesData()
     }
 
-    private fun loadCommentsData() {
+    private fun loadFeaturesData() {
         binding.apply {
-            viewModel.commentsData.observe(viewLifecycleOwner) { response ->
+            viewModel.featuresData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        commentsLoading.isVisible(true, commentsList)
+                        featuresLoading.isVisible(true, featuresList)
                     }
 
                     is NetworkRequest.Success -> {
-                        commentsLoading.isVisible(false, commentsList)
+                        featuresLoading.isVisible(false, featuresList)
                         response.data?.let { data ->
-                            if (data.data!!.isNotEmpty()) {
-                                initRecycler(data.data)
+                            if (data.isNotEmpty()) {
+                                initRecycler(data)
                                 emptyLay.isVisible = false
                             } else {
                                 emptyLay.isVisible = true
@@ -77,7 +67,7 @@ class DetailCommentsFragment : BaseFragment() {
                     }
 
                     is NetworkRequest.Error -> {
-                        commentsLoading.isVisible(false, commentsList)
+                        featuresLoading.isVisible(false, featuresList)
                         root.showSnackBar(response.error!!)
                     }
                 }
@@ -85,11 +75,9 @@ class DetailCommentsFragment : BaseFragment() {
         }
     }
 
-    private fun initRecycler(data: List<ResponseCommentsList.Data>) {
-        commentsAdapter.setData(data)
-        binding.commentsList.setupRecyclerview(
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true), commentsAdapter
-        )
+    private fun initRecycler(data: List<ResponseProductFeatures.ResponseProductFeaturesItem>) {
+        featuresAdapter.setData(data)
+        binding.featuresList.setupRecyclerview(LinearLayoutManager(requireContext()), featuresAdapter)
     }
 
     override fun onDestroy() {
